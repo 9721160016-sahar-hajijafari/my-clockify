@@ -47,15 +47,13 @@ export default {
   },
   methods: {
     async Login() {
-      this.user = await this.$axios.get('https://api.clockify.me/api/v1/user', {
+      this.user = await this.$axios.get('/api/v1/user', {
         headers: {
           'X-Api-Key': this.myField
         }
       })
-      // console.log(this.user)
       this.$store.commit('User/setName', this.user.data.name)
       this.$store.commit('User/setToken', this.myField)
-      this.$router.push('/test')
     }
   }
 }
