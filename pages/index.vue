@@ -11,12 +11,12 @@
             <v-row justify="center" class="main-page__body__text">
               <v-col cols="12">
                 <v-text-field
+                  v-model="myField"
                   solo
                   label="Enter Token"
                   prepend-inner-icon="mdi-account"
                   class="main-page__body__text__token"
                   color="#989090"
-                  v-model="myField"
                 ></v-text-field>
               </v-col>
               <v-col cols="12">
@@ -26,6 +26,7 @@
                   color="rgba(0, 0, 0, 0.63)"
                   height="49px"
                   :disabled="!myField"
+                  @click="Login()"
                 >login</v-btn>
               </v-col>
             </v-row>
@@ -40,7 +41,21 @@
 export default {
   data() {
     return {
-      myField: ''
+      myField: '',
+      user: {}
+    }
+  },
+  methods: {
+    async Login() {
+      this.user = await this.$axios.get('https://api.clockify.me/api/v1/user', {
+        headers: {
+          'X-Api-Key': this.myField
+        }
+      })
+      // console.log(this.user)
+      this.$store.commit('User/setName', this.user.data.name)
+      this.$store.commit('User/setToken', this.myField)
+      this.$router.push('/test')
     }
   }
 }
