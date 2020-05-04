@@ -1,16 +1,14 @@
 <template>
   <div>
-    <!-- <p>aa {{ name }} aa but</p> -->
+    <p>aa {{ name }} aa but</p>
     <navigation />
   </div>
 </template>
 
 <script>
-import Navigation from '../components/Navigation'
+// import Navigation from '../components/Navigation'
 export default {
-  components: {
-    Navigation
-  },
+ 
   data() {
     return {
       name: ''

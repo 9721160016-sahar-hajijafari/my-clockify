@@ -54,6 +54,7 @@ export default {
       })
       this.$store.commit('User/setName', this.user.data.name)
       this.$store.commit('User/setToken', this.myField)
+      this.$router.push('/panel/timeTracker')
     }
   }
 }
